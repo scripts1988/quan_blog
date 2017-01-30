@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+
+<h1>Quan's Blog</h1>
+<br>
+
+<div class="row">
+  <div class="col-sm-8">
+    <div class="card">
+        <%= image_tag("quan.jpg", size: "75x75", class: "img-responsive logo") %>
+        <div class="card-block">
+            <h4 class="card-title">Nguyen Thanh Quan</h4>
+        </div>
+    </div>
+  </div>
+</div>
+<br>
+
+<%= render @articles %>
+
+<br>
+<%= link_to 'New Article', new_article_path , class: 'btn btn-info'%>
+
+</div>
+<br>
