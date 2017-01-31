@@ -13,12 +13,17 @@ class ArticlesController < ApplicationController
   def show
   end
 
+  # GET /search
   def search
-    if params[:search]
-      @article = Article.find(params[:search]).order("created_at DESC")
-    else
-      @articles = Article.all
+    @articles = Article.all
+    @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML)
+    if params[:term]
+      @articles = Article.search(params[:term])
     end
+  end
+
+  def search_post
+    redirect_to search_articles_path(params[:q])
   end
 
   # GET /articles/new

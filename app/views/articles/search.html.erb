@@ -1,0 +1,12 @@
+<div class="container">
+    <% if @articles.present? %>
+        <h3>Search resutls for: <%= params[:term] %></h3>
+        <br>
+        <%= render @articles %>
+        
+    <% else %>
+        <p>There are no article title contains the term(s) '<%= params[:term] %>'</p>
+    <% end %>
+
+    <%= link_to 'Back', articles_path %>
+</div>
