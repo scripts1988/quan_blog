@@ -5,11 +5,24 @@
 <h1>Quan's Blog</h1>
 <br>
 
-
-<%= form_tag(search_articles_path(:term), :method => "get", id: "search-form") do %>
-  <%= text_field_tag :term, params[:term], placeholder: "Search Title" %>
-  <%= submit_tag "Search", :name => nil %>
-<% end %>
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item active">
+      <%= link_to 'Home', articles_path , class: 'nav-link' %>
+    </li>
+    <li class="nav-item active">
+      <%= link_to 'Post', new_article_path , class: 'nav-link' %>
+    </li>
+  </ul>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <form class="form-inline my-2 my-lg-0">
+      <%= form_tag(search_articles_path(:term), :method => "get", id: "search-form", html: {class: 'form-group'}) do %>
+      <%= text_field_tag :term, params[:term], class: 'form-control', placeholder: "Search Title" %>
+      <%= submit_tag "Search", class: 'btn btn-default', :name => nil %>
+      <% end %>
+    </form>
+  </div>
+</nav>
 
 <br>
 
@@ -28,7 +41,7 @@
 <%= render @articles %>
 
 <br>
-<%= link_to 'New Article', new_article_path , class: 'btn btn-info'%>
+<%= link_to 'Post', new_article_path , class: 'btn btn-info'%>
 
 </div>
 <br>

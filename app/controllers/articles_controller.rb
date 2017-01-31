@@ -6,6 +6,9 @@ class ArticlesController < ApplicationController
   def index
     @articles = Article.all
     @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML)
+    if params[:term]
+      @articles = Article.search(params[:term])
+    end
   end
 
   # GET /articles/1
