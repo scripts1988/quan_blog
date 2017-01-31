@@ -13,6 +13,14 @@ class ArticlesController < ApplicationController
   def show
   end
 
+  def search
+    if params[:search]
+      @article = Article.find(params[:search]).order("created_at DESC")
+    else
+      @articles = Article.all
+    end
+  end
+
   # GET /articles/new
   def new
     @article = Article.new

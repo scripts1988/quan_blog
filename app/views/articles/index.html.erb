@@ -5,6 +5,14 @@
 <h1>Quan's Blog</h1>
 <br>
 
+
+<%= form_tag(search_articles_path, :method => "search", id: "search-form") do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Search Title" %>
+  <%= submit_tag "Search", :name => nil %>
+<% end %>
+
+<br>
+
 <div class="row">
   <div class="col-sm-8">
     <div class="card">
