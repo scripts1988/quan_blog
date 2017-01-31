@@ -45,7 +45,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 Describe any challenges encountered while building the app.
 >
     I have not any experience with Ruby and Rails, HTML, CSS before making this example.
-    This demo clip only talking about create and edit Article, I need to research from internet to implement DELETE.
+    I did not understand working flow of Router in rails, so it take much time to complete SEARCH feature
 
 
 ## License
