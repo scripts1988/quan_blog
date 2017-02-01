@@ -14,6 +14,18 @@ class ArticlesController < ApplicationController
   # GET /articles/1
   # GET /articles/1.json
   def show
+    @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML)
+  end
+
+  # GET /articles/details/1
+  # GET /articles/details/1.json
+  def details
+    @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML)
+
+    # Increase 1 unit for view
+    @article = Article.find(params[:id])
+    @article.view += 1
+    Article.update(params[:id], view: @article.view)
   end
 
   # GET /search
@@ -42,7 +54,7 @@ class ArticlesController < ApplicationController
   # POST /articles.json
   def create
     @article = Article.new(article_params)
-
+    @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML)
     respond_to do |format|
       if @article.save
         format.html { redirect_to @article, notice: 'Article was successfully created.' }
@@ -57,6 +69,7 @@ class ArticlesController < ApplicationController
   # PATCH/PUT /articles/1
   # PATCH/PUT /articles/1.json
   def update
+    @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML)
     respond_to do |format|
       if @article.update(article_params)
         format.html { redirect_to @article, notice: 'Article was successfully updated.' }
@@ -86,6 +99,6 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:title, :body)
+      params.require(:article).permit(:title, :body, :view)
     end
 end
