@@ -16,5 +16,22 @@
   </div>
 
   <br>
+  
+  <%= form_tag :action => 'comment' do %>
+  <%= text_field 'comments', 'message',  placeholder: 'Comment ... (160 characters maximum)', maxlength: 160,  size: 75 %>
+  <%= submit_tag "Submit" %>
+  <% end -%>
+
+  <br>
+
+  <ul class="list-group list-group-flush">
+    <% @comment_list.each do |comment|%>
+      <li class="list-group-item"> <%= comment.message %></li>
+    <% end %>
+  </ul>
+
+  <br>
   <%= link_to 'Back', articles_path %>
+  <br>
+  <br>
 </div>

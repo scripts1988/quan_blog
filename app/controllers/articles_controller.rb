@@ -26,6 +26,8 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
     @article.view += 1
     Article.update(params[:id], view: @article.view)
+
+    @comment_list = Comment.where(:article_id => params[:id])
   end
 
   # GET /search
@@ -67,6 +69,26 @@ class ArticlesController < ApplicationController
     end
   end
 
+  # POST /articles/1/comment
+  def comment
+    @comment = Comment.new(comment_params)
+    @comment.article_id = params[:id]
+    @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML)
+    @article = Article.find(@comment.article_id)
+    @article.view -= 1
+    Article.update(params[:id], view: @article.view)
+    
+    respond_to do |format|
+      if @comment.save
+        format.html { redirect_to action: 'details' , notice: 'Comment was successfully posted.' }
+        format.json { render :details, status: :ok, location: @article }
+      else
+        format.html { redirect_to @article, notice: 'Unable to post comment' }
+        format.json { render :details, status: :unprocessable_entity, location: @article }
+      end
+    end
+  end
+
   # PATCH/PUT /articles/1
   # PATCH/PUT /articles/1.json
   def update
@@ -101,5 +123,9 @@ class ArticlesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
       params.require(:article).permit(:title, :body)
+    end
+
+    def comment_params
+      params.require(:comments).permit(:message)
     end
 end
