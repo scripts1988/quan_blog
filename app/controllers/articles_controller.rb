@@ -4,10 +4,10 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.all
+    @articles = Article.all.order("updated_at DESC")
     @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML)
     if params[:term]
-      @articles = Article.search(params[:term])
+      @articles = Article.search(params[:term]).order("updated_at DESC")
     end
   end
 
@@ -27,7 +27,9 @@ class ArticlesController < ApplicationController
     @article.view += 1
     Article.update(params[:id], view: @article.view)
 
-    @comment_list = Comment.where(:article_id => params[:id])
+    @comment_list = Comment.where(:article_id => params[:id]).order("updated_at DESC")
+    @number_of_comment = @comment_list.count
+
   end
 
   # GET /search

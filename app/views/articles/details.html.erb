@@ -5,10 +5,9 @@
     <div class="col-sm-6">
       <div class="card">
           <div class="card-header">
-          <%= @article.view %> Views
+          <h3 class="card-title"><%= @article.title %></h4>
           </div>
         <div class="card-block">
-          <h3 class="card-title"><%= @article.title %></h4>
           <h6 class="card-text"><%= @markdown.render(@article.body).html_safe %></h6>
         </div>
       </div>
@@ -16,22 +15,23 @@
   </div>
 
   <br>
-  
+  <%= link_to 'Back', articles_path %>
+  <br>
+
+  <br>
   <%= form_tag :action => 'comment' do %>
   <%= text_field 'comments', 'message',  placeholder: 'Comment ... (160 characters maximum)', maxlength: 160,  size: 75 %>
   <%= submit_tag "Submit" %>
   <% end -%>
-
   <br>
 
   <ul class="list-group list-group-flush">
+    <small class="text-muted"><%= @number_of_comment %> comments</small>
     <% @comment_list.each do |comment|%>
       <li class="list-group-item"> <%= comment.message %></li>
     <% end %>
   </ul>
 
-  <br>
-  <%= link_to 'Back', articles_path %>
-  <br>
+  
   <br>
 </div>
