@@ -6,7 +6,7 @@ Submitted by: **Nguyen Thanh Quan**
 
 Time spent: **14** hours spent in total
 
-URL: **https://aqueous-castle-94262.herokuapp.com/articles**
+URL: **https://aqueous-castle-94262.herokuapp.com**
 
 
 ## User Stories
