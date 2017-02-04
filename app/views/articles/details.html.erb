@@ -22,17 +22,20 @@
   <br>
   <%= link_to 'Back', articles_path %>
   <br>
-
-  <br>
-  <%= form_tag :action => 'comment' do %>
-  <%= text_field 'comments', 'message',  placeholder: 'Comment ... (160 characters maximum)', maxlength: 160,  size: 75 %>
-  <%= submit_tag "Submit" %>
-  <% end -%>
   <br>
 
+
+  <div class="form-group">
+    <%= form_tag :action => 'comment' do %>
+    <%= text_field 'comments', 'message',  placeholder: 'Comment ... (160 characters maximum)', maxlength: 160,  size: 75 %>
+    <%= submit_tag "Submit" %>
+    <% end -%>
+  </div>
+
+  <br>
   <ul class="list-group list-group-flush">
     <small class="text-muted"><%= @number_of_comment %> comments</small>
-    <% @comment_list.each do |comment|%>
+    <% @comment_list.each do | comment | %>
       <li class="list-group-item"> <%= comment.message %></li>
     <% end %>
   </ul>

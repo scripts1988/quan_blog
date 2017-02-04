@@ -89,10 +89,10 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to action: 'details' , notice: 'Comment was successfully posted.' }
+        format.html { redirect_to action: 'details' }
         format.json { render :details, status: :ok, location: @article }
       else
-        format.html { redirect_to @article, notice: 'Unable to post comment' }
+        format.html { redirect_to @article, alert: 'Unable to post comment' }
         format.json { render :details, status: :unprocessable_entity, location: @article }
       end
     end
