@@ -1,4 +1,8 @@
-<p id="notice"><%= notice %></p>
+<% if notice != '' %>
+  <% if notice %>
+    <div class="alert alert-success"><%= notice %></div>
+  <% end %>
+<% end %>
 
 <div class="container">
   <div class="row">
