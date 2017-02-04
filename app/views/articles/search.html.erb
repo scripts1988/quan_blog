@@ -3,7 +3,7 @@
         <h3>Search resutls for: <%= params[:term] %></h3>
         <br>
         <%= render @articles %>
-        
+
     <% else %>
         <p>There are no article title contains the term(s) '<%= params[:term] %>'</p>
     <% end %>

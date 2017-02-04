@@ -1,6 +1,9 @@
+# Public: Controller layer for Article
+
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
+  # Public: Lookup and also search article following article title
   # GET /articles
   # GET /articles.json
   def index
@@ -11,6 +14,7 @@ class ArticlesController < ApplicationController
     end
   end
 
+  # Public: Lookup and also search article following article title
   # GET /articles/1
   # GET /articles/1.json
   def show
@@ -32,6 +36,7 @@ class ArticlesController < ApplicationController
 
   end
 
+  # Public: Lookup and also search article following article title
   # GET /search
   def search
     @articles = Article.all
@@ -54,6 +59,7 @@ class ArticlesController < ApplicationController
   def edit
   end
 
+  # Public: Create new article
   # POST /articles
   # POST /articles.json
   def create
@@ -71,6 +77,7 @@ class ArticlesController < ApplicationController
     end
   end
 
+  # Public: Create new comment following article id number
   # POST /articles/1/comment
   def comment
     @comment = Comment.new(comment_params)
@@ -79,7 +86,7 @@ class ArticlesController < ApplicationController
     @article = Article.find(@comment.article_id)
     @article.view -= 1
     Article.update(params[:id], view: @article.view)
-    
+
     respond_to do |format|
       if @comment.save
         format.html { redirect_to action: 'details' , notice: 'Comment was successfully posted.' }
@@ -91,6 +98,7 @@ class ArticlesController < ApplicationController
     end
   end
 
+  # Public: Modify article
   # PATCH/PUT /articles/1
   # PATCH/PUT /articles/1.json
   def update
@@ -106,6 +114,7 @@ class ArticlesController < ApplicationController
     end
   end
 
+  # Public: Delete article
   # DELETE /articles/1
   # DELETE /articles/1.json
   def destroy
