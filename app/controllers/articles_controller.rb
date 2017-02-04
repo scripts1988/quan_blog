@@ -28,8 +28,7 @@ class ArticlesController < ApplicationController
 
     # Increase 1 unit for view
     @article = Article.find(params[:id])
-    @article.view += 1
-    Article.update(params[:id], view: @article.view)
+    @article.increment!(:view)
 
     @comment_list = Comment.where(:article_id => params[:id]).order("updated_at DESC")
     @number_of_comment = @comment_list.count
